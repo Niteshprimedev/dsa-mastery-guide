@@ -1,30 +1,41 @@
-<h2><a href="https://leetcode.com/problems/longest-repeating-character-replacement">424. Longest Repeating Character Replacement</a></h2><h3>Medium</h3><hr><p>You are given a string <code>s</code> and an integer <code>k</code>. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most <code>k</code> times.</p>
+<h2><a href="https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards">1538. Maximum Points You Can Obtain from Cards</a></h2><h3>Medium</h3><hr><p>There are several cards <strong>arranged in a row</strong>, and each card has an associated number of points. The points are given in the integer array <code>cardPoints</code>.</p>
 
-<p>Return <em>the length of the longest substring containing the same letter you can get after performing the above operations</em>.</p>
+<p>In one step, you can take one card from the beginning or from the end of the row. You have to take exactly <code>k</code> cards.</p>
+
+<p>Your score is the sum of the points of the cards you have taken.</p>
+
+<p>Given the integer array <code>cardPoints</code> and the integer <code>k</code>, return the <em>maximum score</em> you can obtain.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
 <pre>
-<strong>Input:</strong> s = &quot;ABAB&quot;, k = 2
-<strong>Output:</strong> 4
-<strong>Explanation:</strong> Replace the two &#39;A&#39;s with two &#39;B&#39;s or vice versa.
+<strong>Input:</strong> cardPoints = [1,2,3,4,5,6,1], k = 3
+<strong>Output:</strong> 12
+<strong>Explanation:</strong> After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
 <pre>
-<strong>Input:</strong> s = &quot;AABABBA&quot;, k = 1
+<strong>Input:</strong> cardPoints = [2,2,2], k = 2
 <strong>Output:</strong> 4
-<strong>Explanation:</strong> Replace the one &#39;A&#39; in the middle with &#39;B&#39; and form &quot;AABBBBA&quot;.
-The substring &quot;BBBB&quot; has the longest repeating letters, which is 4.
-There may exists other ways to achieve this answer too.</pre>
+<strong>Explanation:</strong> Regardless of which two cards you take, your score will always be 4.
+</pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> cardPoints = [9,7,7,9,7,7,9], k = 7
+<strong>Output:</strong> 55
+<strong>Explanation:</strong> You have to take all the cards. Your score is the sum of points of all cards.
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
-	<li><code>s</code> consists of only uppercase English letters.</li>
-	<li><code>0 &lt;= k &lt;= s.length</code></li>
+	<li><code>1 &lt;= cardPoints.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= cardPoints[i] &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= k &lt;= cardPoints.length</code></li>
 </ul>

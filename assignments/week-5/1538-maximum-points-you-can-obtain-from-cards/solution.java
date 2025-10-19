@@ -1,34 +1,67 @@
 class Solution {
-    public int characterReplacement(String s, int k) {
-        int longestSubstrLen = 0;
-        int maxCharFreq = 0;
-        int windowStrtIdx = 0;
-        int[] charsArrMap = new int[26];
+    public int maxScore(int[] cardPoints, int k) {
+        /*
+        int totalPoints = 0;
 
-        Arrays.fill(charsArrMap, 0);
-
-        for(int windowEndIdx = 0; windowEndIdx < s.length(); windowEndIdx++){
-            char currChar = s.charAt(windowEndIdx);
-
-            int charIdx = currChar - 65;
-
-            charsArrMap[charIdx] += 1;
-            maxCharFreq = Math.max(maxCharFreq, charsArrMap[charIdx]);
-            int totalChars = windowEndIdx - windowStrtIdx + 1;
-            int replacedChars = totalChars - maxCharFreq;
-
-            if(replacedChars > k){
-                char strtChar = s.charAt(windowStrtIdx);
-                int strtCharIdx = strtChar - 65;
-
-                charsArrMap[strtCharIdx] -= 1;
-                windowStrtIdx += 1;
-            }
-
-            int windowSize = windowEndIdx - windowStrtIdx + 1;
-            longestSubstrLen = Math.max(longestSubstrLen, windowSize);
+        for(int card : cardPoints){
+            totalPoints += card;
         }
 
-        return longestSubstrLen;
+        int n = cardPoints.length;
+        int windowSize = n - k;
+
+        if(windowSize == 0){
+            return totalPoints;
+        }
+
+        int maxPoints = 0;
+
+        int strtIdx = 0;
+        int endIdx = 0;
+
+        while(endIdx < n){
+            totalPoints -= cardPoints[endIdx];
+
+            // System.out.println(maxPoints + " " + totalPoints);
+
+            if((endIdx - strtIdx + 1) == windowSize){
+                maxPoints = Math.max(maxPoints, totalPoints);
+
+                totalPoints += cardPoints[strtIdx];
+                strtIdx += 1;
+            }
+
+            endIdx += 1;
+        }
+
+        return maxPoints;
+        */
+
+        // Solution:
+
+        int totalPoints = 0;
+
+        int maxPoints = 0;
+        
+        // Maximum points from strt window;
+        for(int i = 0; i < k; i++){
+            totalPoints += cardPoints[i];
+        }
+
+        maxPoints = totalPoints;
+
+        int n = cardPoints.length;
+        int strt = k - 1;
+
+        // Maximum points from both strt & end and end window;
+        for(int i = n - 1; i >= (n - k); i--){
+            // remove from strt;
+            totalPoints -= cardPoints[strt--];
+            totalPoints += cardPoints[i];
+
+            maxPoints = Math.max(maxPoints, totalPoints);
+        }
+
+        return maxPoints;
     }
 }
